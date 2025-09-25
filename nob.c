@@ -292,7 +292,20 @@ int main(int argc, char** argv) {
 
     if(!nob_cmd_run_sync_and_reset(&cmd)) return 1;
     //    printf("no error\n");
+
+    plist_push(oPathList, oFile);
   }
+
+  nob_cmd_append(&cmd, "cc", "-Wall", "-Wextra", "-I./includes");
+  while(!plist_empty(oPathList)) {
+    const char* oFile = plist_pop(oPathList);
+
+    nob_cmd_append(&cmd, oFile);
+  }
+
+  nob_cmd_append(&cmd, "-o", BUILD_FOLDER "/gVisual");
+
+  if(!nob_cmd_run_sync_and_reset(&cmd)) return 1;
   
   closedir(src);
   plist_free(cFiles);
