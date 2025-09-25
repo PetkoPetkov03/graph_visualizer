@@ -8,7 +8,7 @@
 #define OBJ_FOLDER "./objs"
 #define SRC_FOLDER "./src"
 #define D_BUFF_SIZE 10
-#include "./includes/nob.h"
+#include "./includes/imported/nob.h"
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
@@ -289,6 +289,7 @@ int main(int argc, char** argv) {
     if(!nob_mkdir_if_not_exists(odir)) return 1;
     nob_cmd_append(&cmd, "-o", oFile);
     
+
     if(!nob_cmd_run_sync_and_reset(&cmd)) return 1;
     //    printf("no error\n");
   }
